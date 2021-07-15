@@ -9,7 +9,7 @@ import java.util.List;
 public class RouteDao {
     private final Connection connection;
 
-    private final String ALL = "SELECT * FROM routes";
+    private static final String ALL = "SELECT * FROM routes";
 
     public RouteDao(Connection connection) {
         this.connection = connection;

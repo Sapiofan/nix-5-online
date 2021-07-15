@@ -8,7 +8,7 @@ import java.util.List;
 public class SolutionDao {
     private final Connection connection;
 
-    private final String INSERT = "INSERT INTO solutions (problem_id, cost) VALUES (?, ?)";
+    private static final String INSERT = "INSERT INTO solutions (problem_id, cost) VALUES (?, ?)";
 
     public SolutionDao(Connection connection) {
         this.connection = connection;

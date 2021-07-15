@@ -9,7 +9,7 @@ import java.util.List;
 public class LocationDao {
     private final Connection connection;
 
-    private final String ALL = "SELECT * FROM locations";
+    private static final String ALL = "SELECT * FROM locations";
 
     public LocationDao(Connection connection) {
         this.connection = connection;

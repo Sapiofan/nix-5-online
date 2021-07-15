@@ -2,7 +2,7 @@ package solutions;
 
 
 public class MinDistances {
-    private final int MAX = 200000;
+    private static final int MAX = 200000;
 
     public int[][] distance(int numOfCities, int[][] routes){
         int[][] distance = new int[numOfCities][numOfCities];

@@ -9,7 +9,7 @@ import java.util.List;
 public class ProblemDao {
     private final Connection connection;
 
-    private final String ALL = "SELECT * FROM problems LEFT JOIN solutions ON solutions.problem_id=problems.id WHERE cost is NULL";
+    private static final String ALL = "SELECT * FROM problems LEFT JOIN solutions ON solutions.problem_id=problems.id WHERE cost is NULL";
 
     public ProblemDao(Connection connection) {
         this.connection = connection;
