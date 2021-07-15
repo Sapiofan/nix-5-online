@@ -9,7 +9,7 @@ import java.util.List;
 public class ProblemDao {
     private final Connection connection;
 
-    private final String ALL = "SELECT * FROM problems";
+    private final String ALL = "SELECT * FROM problems LEFT JOIN solutions ON solutions.problem_id=problems.id WHERE cost is NULL";
 
     public ProblemDao(Connection connection) {
         this.connection = connection;
@@ -18,8 +18,8 @@ public class ProblemDao {
 
     public List<Problem> allProblems(){
         List<Problem> problems = new ArrayList<>();
-        try(Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(ALL);
+        try(PreparedStatement statement = connection.prepareStatement(ALL)) {
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
                 Problem problem = new Problem();
                 problem.setId(resultSet.getInt(1));
