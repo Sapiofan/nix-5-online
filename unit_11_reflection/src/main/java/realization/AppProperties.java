@@ -14,8 +14,7 @@ public class AppProperties {
             ReadFile readFile = new ReadFile();
             Properties properties = readFile.readFile("app.properties");
 
-            Class<?> c = object.getClass();
-            Field[] fields = c.getDeclaredFields();
+            Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
                 if (field.isAnnotationPresent(PropertyKey.class)) {
                     PropertyKey propertyKey = field.getAnnotation(PropertyKey.class);
