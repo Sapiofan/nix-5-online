@@ -5,9 +5,8 @@ import realization.AppProperties;
 
 public class MainClass {
     public static void main(String[] args) {
-        Book book = new Book();
         AppProperties props = new AppProperties();
-        props.initialize(book);
+        Book book = props.initialize(Book.class);
         System.out.println(book);
     }
 }

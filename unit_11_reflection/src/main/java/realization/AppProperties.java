@@ -3,11 +3,14 @@ package realization;
 import annotations.PropertyKey;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
 public class AppProperties {
-    public void initialize(Object object){
-        if(object != null) {
+    public <T> T initialize(Class<T> clazz){
+        T object;
+        try {
+            object = clazz.getDeclaredConstructor().newInstance();
             ReadFile readFile = new ReadFile();
             Properties properties = readFile.readFile("app.properties");
 
@@ -21,6 +24,9 @@ public class AppProperties {
                     castObject(object, field, props);
                 }
             }
+            return object;
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
         }
     }
 
