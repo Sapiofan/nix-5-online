@@ -2,31 +2,24 @@ package realization;
 
 import annotations.PropertyKey;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
 public class AppProperties {
     public void initialize(Object object){
         if(object != null) {
-            Properties properties = new Properties();
-            ClassLoader classLoader = getClass().getClassLoader();
-            InputStream input = classLoader.getResourceAsStream("app.properties");
-            try {
-                properties.load(input);
-                Class<?> c = object.getClass();
-                Field[] fields = c.getDeclaredFields();
-                for (Field field : fields) {
-                    if (field.isAnnotationPresent(PropertyKey.class)) {
-                        PropertyKey propertyKey = field.getAnnotation(PropertyKey.class);
-                        String props = properties.getProperty(propertyKey.value());
-                        field.setAccessible(true);
-                        castObject(object, field, props);
-                    }
+            ReadFile readFile = new ReadFile();
+            Properties properties = readFile.readFile("app.properties");
+
+            Class<?> c = object.getClass();
+            Field[] fields = c.getDeclaredFields();
+            for (Field field : fields) {
+                if (field.isAnnotationPresent(PropertyKey.class)) {
+                    PropertyKey propertyKey = field.getAnnotation(PropertyKey.class);
+                    String props = properties.getProperty(propertyKey.value());
+                    field.setAccessible(true);
+                    castObject(object, field, props);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
         }
     }
