@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class Distance {
-    public void minimumDistance(){ // check getId in classes, correct jdbc, connect to server and database, create sql file
+    public void minimumDistance(){
         Properties properties = loadProperties();
 
         String url = properties.getProperty("url");

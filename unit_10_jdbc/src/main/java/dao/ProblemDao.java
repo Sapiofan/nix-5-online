@@ -10,7 +10,6 @@ public class ProblemDao {
     private final Connection connection;
 
     private final String ALL = "SELECT * FROM problems";
-    private final String BYID = "SELECT * FROM problems WHERE id = ?";
 
     public ProblemDao(Connection connection) {
         this.connection = connection;
@@ -32,19 +31,5 @@ public class ProblemDao {
             throw new RuntimeException(e);
         }
         return problems;
-    }
-
-    public Problem getId(int id){
-        Problem problem = new Problem();
-        try(PreparedStatement statement = connection.prepareStatement(BYID)) {
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            problem.setId(resultSet.getInt(1));
-            problem.setFrom_id(resultSet.getInt(2));
-            problem.setTo_id(resultSet.getInt(3));
-            return problem;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

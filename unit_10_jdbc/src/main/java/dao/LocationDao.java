@@ -10,7 +10,6 @@ public class LocationDao {
     private final Connection connection;
 
     private final String ALL = "SELECT * FROM locations";
-    private final String BYID = "SELECT * FROM locations WHERE id = ?";
 
     public LocationDao(Connection connection) {
         this.connection = connection;
@@ -30,18 +29,5 @@ public class LocationDao {
             throw new RuntimeException(e);
         }
         return locations;
-    }
-
-    public Location getId(int id){
-        Location location = new Location();
-        try(PreparedStatement statement = connection.prepareStatement(BYID)) {
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            location.setId(resultSet.getInt(1));
-            location.setName(resultSet.getString(2));
-            return location;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
