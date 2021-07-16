@@ -14,18 +14,23 @@ public class CollectObjects {
         Table table = new Table();
         CSVreader reader = new CSVreader();
         List<String[]> values = reader.read();
+        table.setValues(values);
         List<Person> persons = new ArrayList<>();
         int counter = 0;
         for (String[] row : values) {
             if(counter == 0){
-                table.setHeader(row);
+                List<String> header = new ArrayList<>();
+                for (String s : row) {
+                    header.add(s);
+                }
+                table.setHeader(header);
                 counter++;
                 continue;
             }
             Person person = mapping.mapper(Person.class, row);
             persons.add(person);
         }
-        table.setValues(persons);
+        table.setPeople(persons);
         return table;
     }
 }
