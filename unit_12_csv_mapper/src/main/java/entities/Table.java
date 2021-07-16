@@ -50,14 +50,14 @@ public class Table {
     }
 
     private boolean indexCorrect(int row, int column){
-        if((row <= 0 || row > values.size()) && (column <= 0 || column > values.get(row).length)){
+        if((row <= 0 || row >= values.size()) || (column <= 0 || column > values.get(row).length)){
             return false;
         }
         return true;
     }
 
     private boolean checkRowHeader(int row, String Header){
-        if(row <= 0 || row > values.size()) return false;
+        if(row <= 0 || row >= values.size()) return false;
         for (String s : header) {
             if(s.equalsIgnoreCase(Header)) return true;
         }
