@@ -6,6 +6,7 @@ import reading.CSVreader;
 import service.Mapping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CollectObjects {
@@ -18,16 +19,19 @@ public class CollectObjects {
         List<Person> persons = new ArrayList<>();
         int counter = 0;
         List<String> header = new ArrayList<>();
+        HashMap<String, Integer> h = new HashMap<>();
+        int index = 0;
         for (String[] row : values) {
             if(counter == 0){
                 for (String s : row) {
                     header.add(s);
+                    h.put(s, index++);
                 }
                 table.setHeader(header);
                 counter++;
                 continue;
             }
-            Person person = mapping.mapper(Person.class, row, header);
+            Person person = mapping.mapper(Person.class, row, h);
             persons.add(person);
         }
         table.setPeople(persons);

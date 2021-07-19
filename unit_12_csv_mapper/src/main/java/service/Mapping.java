@@ -4,10 +4,10 @@ import annotations.Mapper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
+import java.util.HashMap;
 
 public class Mapping {
-    public <T> T mapper(Class<T> clazz, String[] values, List<String> header){
+    public <T> T mapper(Class<T> clazz, String[] values, HashMap<String, Integer> header){
         T object;
         try {
             object = clazz.getDeclaredConstructor().newInstance();
@@ -16,12 +16,7 @@ public class Mapping {
                 if (field.isAnnotationPresent(Mapper.class)) {
                     field.setAccessible(true);
                     Mapper mapper = field.getAnnotation(Mapper.class);
-                    for(int index = 0; index < header.size(); index++){
-                        if(header.get(index).equalsIgnoreCase(mapper.value())) {
-                            castObject(object, field, values[index]);
-                            break;
-                        }
-                    }
+                    castObject(object, field, values[header.get(mapper.value())]);
                 }
             }
             return object;
