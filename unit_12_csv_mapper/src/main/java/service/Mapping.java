@@ -4,19 +4,24 @@ import annotations.Mapper;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 public class Mapping {
-    public <T> T mapper(Class<T> clazz, String[] values){
+    public <T> T mapper(Class<T> clazz, String[] values, List<String> header){
         T object;
         try {
             object = clazz.getDeclaredConstructor().newInstance();
             Field[] fields = clazz.getDeclaredFields();
-            int counter = 0;
             for (Field field : fields) {
                 if (field.isAnnotationPresent(Mapper.class)) {
                     field.setAccessible(true);
-                    castObject(object, field, values[counter]);
-                    counter++;
+                    Mapper mapper = field.getAnnotation(Mapper.class);
+                    for(int index = 0; index < header.size(); index++){
+                        if(header.get(index).equalsIgnoreCase(mapper.value())) {
+                            castObject(object, field, values[index]);
+                            break;
+                        }
+                    }
                 }
             }
             return object;

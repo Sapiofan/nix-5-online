@@ -17,9 +17,9 @@ public class CollectObjects {
         table.setValues(values);
         List<Person> persons = new ArrayList<>();
         int counter = 0;
+        List<String> header = new ArrayList<>();
         for (String[] row : values) {
             if(counter == 0){
-                List<String> header = new ArrayList<>();
                 for (String s : row) {
                     header.add(s);
                 }
@@ -27,7 +27,7 @@ public class CollectObjects {
                 counter++;
                 continue;
             }
-            Person person = mapping.mapper(Person.class, row);
+            Person person = mapping.mapper(Person.class, row, header);
             persons.add(person);
         }
         table.setPeople(persons);

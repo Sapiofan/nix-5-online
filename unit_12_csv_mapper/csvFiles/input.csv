@@ -1,4 +1,4 @@
-id, name, year, city, mail
-1, Alex, 1979, Kharkov, alex@gmail.com
-2, Mark, 2000, Kiev, mark@gmail.com
-3, Jess, 1998, Lvov, jess@gmail.com
+id, year, name, city, mail
+1, 1979, Alex, Kharkov, alex@gmail.com
+2, 2000, Mark, Kiev, mark@gmail.com
+3, 1998, Jess, Lvov, jess@gmail.com
