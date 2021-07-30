@@ -25,7 +25,7 @@ public class Operation {
     private Category category;
 
 
-    public Operation(){
+    public Operation() {
         time = Instant.now();
     }
 
@@ -42,7 +42,7 @@ public class Operation {
     }
 
     public void setDifference(Long difference) {
-        if(difference <= 0l){
+        if (difference <= 0l) {
             throw new RuntimeException("Operation can't be accomplished as amount can't be less than zero");
         }
         this.difference = difference;

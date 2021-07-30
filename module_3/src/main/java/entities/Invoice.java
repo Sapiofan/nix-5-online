@@ -20,8 +20,8 @@ public class Invoice {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "invoice")
     private List<Operation> operations = new ArrayList<>();
 
-    public Invoice(){
-        this.amount =  0l;
+    public Invoice() {
+        this.amount = 0l;
     }
 
     public Integer getId() {
@@ -57,9 +57,9 @@ public class Invoice {
         this.operations = operations;
     }
 
-    public void addOperation(Operation operation){
+    public void addOperation(Operation operation) {
         operations.add(operation);
-        if(operation.getCategory().getClass().getName().equals("entities.Income"))
+        if (operation.getCategory().getClass().getName().equals("entities.Income"))
             amount += operation.getDifference();
         else
             amount -= operation.getDifference();

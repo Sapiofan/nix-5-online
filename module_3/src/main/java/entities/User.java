@@ -23,7 +23,8 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     List<Invoice> invoices = new ArrayList<>();
 
-    public User(){}
+    public User() {
+    }
 
     public Integer getId() {
         return id;
@@ -65,7 +66,7 @@ public class User {
         this.invoices = invoices;
     }
 
-    public void addInvoice(Invoice invoice){
+    public void addInvoice(Invoice invoice) {
         invoices.add(invoice);
     }
 }

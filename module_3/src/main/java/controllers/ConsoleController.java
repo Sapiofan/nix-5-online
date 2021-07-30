@@ -17,12 +17,12 @@ public class ConsoleController {
     private static final Logger logWarn = LoggerFactory.getLogger("warn");
     private static final Logger logError = LoggerFactory.getLogger("error");
 
-    public void start(){
+    public void start() {
         Scanner scanner = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String name = null;
-        String email = null;
-        String password = null;
+        String name;
+        String email;
+        String password;
         try {
             System.out.println("Input your first and last names (separated by space):");
             name = reader.readLine();// Test Name
@@ -45,12 +45,12 @@ public class ConsoleController {
                     "2 >> export operation for a certain period\n" +
                     "3 >> exit from program");
             String choice = scanner.next();
-            switch (choice){
+            switch (choice) {
                 case "1" -> {
                     AddingOfOperations adding = new AddingOfOperations();
                     adding.addOperation(name, email, password);
                 }
-                case "2" ->{
+                case "2" -> {
                     WriteToCSV writeToCSV = new WriteToCSV();
                     writeToCSV.exportInCSV(name, email, password);
                 }

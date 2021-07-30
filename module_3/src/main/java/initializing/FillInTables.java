@@ -4,7 +4,7 @@ import entities.*;
 import org.hibernate.Session;
 
 public class FillInTables {
-    public void fillIn(Session session){
+    public void fillIn(Session session) {
         User user = new User();
         user.setName("Test Name");
         user.setEmail("testname@gmail.com");

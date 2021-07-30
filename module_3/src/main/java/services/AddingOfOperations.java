@@ -33,13 +33,10 @@ public class AddingOfOperations {
                 query.setParameter("password", password);
                 query.setMaxResults(1);
                 User user = (User) query.getSingleResult();
-                session.getTransaction().commit();
-                if(user == null){
+                if (user == null) {
                     logError.error("System couldn't sign in. Wrong input. Email: " + email);
                     throw new RuntimeException("System couldn't sign in. Input was wrong");
-                }
-                else
-                {
+                } else {
                     System.out.println("System signed in");
                     logInfo.info("System signed in. Email: " + email);
                 }
@@ -54,12 +51,11 @@ public class AddingOfOperations {
                 }
                 int index = sc.nextInt();
                 logInfo.info("index of invoice: " + index + ", size of list: " + invoices.size());
-                Invoice invoice = invoices.get(index-1);
+                Invoice invoice = invoices.get(index - 1);
                 System.out.println("Choose the category of operation:\n" +
                         "1 >> income\n" +
                         "2 >> expense");
                 String category = sc.next();
-                session.getTransaction().begin();
                 switch (category) {
                     case "1" -> {
                         System.out.println("Input the amount that will be added:");
@@ -106,7 +102,7 @@ public class AddingOfOperations {
                 }
                 session.getTransaction().commit();
                 System.out.println("Operation was added. Current amount of invoice: " + invoice.getAmount());
-            }catch (Exception e){
+            } catch (Exception e) {
                 session.getTransaction().rollback();
                 throw new RuntimeException(e);
             }

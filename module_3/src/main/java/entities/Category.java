@@ -21,12 +21,13 @@ public class Category {
     @Column(nullable = false)
     private String description;
 
-    public enum Categories{
+    public enum Categories {
         INCOME,
         EXPENSE;
     }
 
-    public Category(){}
+    public Category() {
+    }
 
     public Integer getId() {
         return id;
@@ -60,7 +61,7 @@ public class Category {
         this.description = description;
     }
 
-    public void addOperation(Operation operation){
+    public void addOperation(Operation operation) {
         operations.add(operation);
     }
 }

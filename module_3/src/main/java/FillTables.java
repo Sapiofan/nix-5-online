@@ -13,8 +13,7 @@ public class FillTables {
                 session.getTransaction().begin();
                 fill.fillIn(session);
                 session.getTransaction().commit();
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 session.getTransaction().rollback();
                 throw new RuntimeException(e);
             }
