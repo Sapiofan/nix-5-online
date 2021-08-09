@@ -54,16 +54,15 @@ public class MainClass {
         System.out.println("\nQuantity of prime numbers: " + firstPrimes.size());
 
         System.out.println("Prime numbers");
-        var set = new LinkedHashSet<>();
+        Set<Integer> set = new LinkedHashSet<>();
         for (Integer firstPrime : firstPrimes) {
             System.out.print(firstPrime + " ");
             set.add(firstPrime);
         }
 
         System.out.println("\nPrime numbers without repetition");
-        Iterator itr = set.iterator();
-        while (itr.hasNext()) {
-            System.out.print(itr.next() + " ");
+        for (Integer i : set) {
+            System.out.print(i + " ");
         }
     }
 
