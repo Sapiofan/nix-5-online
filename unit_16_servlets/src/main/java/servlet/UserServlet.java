@@ -14,7 +14,7 @@ public class UserServlet extends HttpServlet {
     private final Map<String, String> users = new LinkedHashMap<>();
 
     @Override
-    public void init(){
+    public void init() {
         log(getServletName() + " initialized");
     }
 
@@ -48,16 +48,16 @@ public class UserServlet extends HttpServlet {
                 "  <th>User-Agent</th>\n" +
                 "</tr>");
 
-        for(Map.Entry<String, String> record : users.entrySet()){
+        for (Map.Entry<String, String> record : users.entrySet()) {
             String key = record.getKey();
             String value = record.getValue();
-            if(key.equals(remoteAddr)){
+            if (key.equals(remoteAddr)) {
                 writer.write(String.format(
                         "<tr>\n" +
                                 "  <td><b>%s</b></td>\n" +
                                 "  <td><b>%s</b></td>\n" +
                                 "</tr>", key, value));
-            }else {
+            } else {
                 writer.write(String.format(
                         "<tr>\n" +
                                 "   <td>%s</td>\n" +
