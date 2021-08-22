@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UserServlet extends HttpServlet {
 
-    private final Map<String, String> users = new LinkedHashMap<>();
+    private final Map<String, String> users = new ConcurrentHashMap<>();
 
     @Override
     public void init() {
