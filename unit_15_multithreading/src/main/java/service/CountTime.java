@@ -1,8 +1,9 @@
 package service;
 
-import entities.Container;
 import entities.Horse;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,12 +16,14 @@ public class CountTime {
     public void horseResult(int number) {
         ExecutorService service = Executors.newFixedThreadPool(THREADS);
 //        ExecutorService service = Executors.newCachedThreadPool();
-        Container container = new Container();
+
+        List<Horse> horses = new ArrayList<>();
+        List<Horse> synHorses = Collections.synchronizedList(horses);
 
         for (int i = 1; i <= THREADS; i++) {
             Horse horse = new Horse();
             horse.setId(i);
-            horse.setContainer(container);
+            horse.setHorses(synHorses);
             service.execute(horse);
         }
         service.shutdown();
@@ -30,8 +33,6 @@ public class CountTime {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        List<Horse> horses = container.getHorses();
 
         int counter = 1;
         int horseForWin = 0;

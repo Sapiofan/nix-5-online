@@ -1,11 +1,12 @@
 package entities;
 
+import java.util.List;
 import java.util.Random;
 
 public class Horse implements Runnable {
     private int id;
     private int sleep;
-    private Container container;
+    private List<Horse> horses;
     private int distance = 0;
 
     @Override
@@ -25,7 +26,7 @@ public class Horse implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-        container.addHorse(this);
+        horses.add(this);
     }
 
     public int getId() {
@@ -36,8 +37,8 @@ public class Horse implements Runnable {
         this.id = id;
     }
 
-    public void setContainer(Container container) {
-        this.container = container;
+    public void setHorses(List<Horse> horses) {
+        this.horses = horses;
     }
 
     public int getSleep() {
